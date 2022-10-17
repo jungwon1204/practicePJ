@@ -1,16 +1,14 @@
-import sys
-
-a, b, c = map(int, sys.stdin.readline().split(" "))
-
-c = c - b
+a, b, c = list(map(int, input().split()))
 
 cnt = 0
-if a == 0:
-    cnt = 1
-if c > 0:
-    cnt = int(a/c)# 딱 맞아떨어지는경우 +1 해줘야함
-    cnt += 1
-elif c <= 0:
+dump_1 = a
+
+if b >= c:
     cnt = -1
+
+while cnt != -1:
+    cnt = a+b/c
+    dump_1 = a + b*cnt - c*cnt
+
 
 print(cnt)
