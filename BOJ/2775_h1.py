@@ -11,4 +11,4 @@ for _ in range(T):
                 print(line[x])
     line = [i for i in range(15)]
     if k == 0:
-        print(line[n],"?")
+        print(n)
