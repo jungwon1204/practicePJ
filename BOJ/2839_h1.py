@@ -11,5 +11,5 @@ for i in range(n):
 
 """
 n=int(input())
-print(-(n in[4,7])or n-2*n//5*2) < wow
+print(-(n in[4,7])or n-2*n//5*2) #<-wow
 """
