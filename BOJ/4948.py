@@ -1,9 +1,6 @@
-import time
 n = 1
 while True:
-    
     n = int(input())
-    t1 = time.time()
     if n == 0:
         break
     data = ((n*2)+1)*[True]#0~n*2까지
@@ -20,4 +17,3 @@ while True:
                 
     t = [i for i, x in enumerate(data) if x == True and i>n]
     print(len(t))
-    print(time.time() - t1)
