@@ -2,10 +2,11 @@ import numpy as np
 import pandas as pd
 from keras import Sequential, layers
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import Normalizer
 import tensorflow as tf
 import matplotlib.pyplot as plt
 
-with open(r"인공지능\ss_PJ\육군 신체측정정보.csv", "r", ) as file:
+with open(r"practicePJ\20221122_ss_PJ\육군 신체측정정보.csv", "r", ) as file:
     data = pd.read_csv(file)
     #print(data)
 train_data = data.to_numpy()
@@ -17,25 +18,27 @@ train_data = np.array(x_data)
 test_data = np.array(y_data)
 print(train_data.shape, test_data.shape)
 
-#print(test_data)
+nmr = Normalizer().fit(x_data)
+t = nmr.transform(x_data)
+x_data = t
 
 train_x, test_x, train_y, test_y = train_test_split(train_data, test_data, random_state=1)
-print(test_y)
+#print(test_y)
 
 model = Sequential()
 model.add(layers.Input(7))
 model.add(layers.Flatten())
-model.add(layers.Dense(256, activation="relu"))
-model.add(layers.Dense(128, activation="relu"))
+#model.add(layers.Dense(256, activation="relu"))
 model.add(layers.Dense(64, activation="relu"))
 model.add(layers.Dense(32, activation="relu"))
 model.add(layers.Dense(16, activation="relu"))
+model.add(layers.Dense(4, activation="relu"))
 model.add(layers.Dense(1, activation="relu"))
 
 model.summary()
 
-model.compile(optimizer='adam',loss='mean_squared_error')
-model.fit(train_x, train_y, epochs=10, batch_size=8)
+model.compile(optimizer='RMSprop',loss='mae')
+model.fit(train_x, train_y, epochs=10, batch_size=128)
 
 data = model.predict(test_x)
 print(data)
