@@ -38,11 +38,13 @@ model.add(layers.Dense(1, activation="relu"))
 model.summary()
 
 model.compile(optimizer='RMSprop',loss='mae')
-model.fit(train_x, train_y, epochs=10, batch_size=128)
+model.fit(train_x, train_y, epochs=20, batch_size=128)
 
 data = model.predict(test_x)
 print(data)
 print(test_x)
+
+model.save(r"practicePJ\20221122_ss_PJ\save_model\model_1.h5")
 #history = model.compile(optimizer='adam', loss='mean_squared_error', metrics=['mean_squared_error'])
 
 """W = tf.Variable(tf.random.normal([1]), name="weight")
